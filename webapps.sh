@@ -3,11 +3,11 @@
 # window with their own icon, but run inside your normal Firefox profile, so
 # logins are shared and no extra Firefox is started.
 #
-#   ./install.sh https://youtube.com [-n "YouTube"]   install
-#   ./install.sh -r <url|name>                       remove
-#   ./install.sh list                                list installed apps
-#   ./install.sh check                               check profiles, enable the feature
-#   ./install.sh frameless on|off                    app windows without toolbar (default: on)
+#   ./webapps.sh https://youtube.com [-n "YouTube"]   install
+#   ./webapps.sh -r <url|name>                       remove
+#   ./webapps.sh list                                list installed apps
+#   ./webapps.sh check                               check profiles, enable the feature
+#   ./webapps.sh frameless on|off                    app windows without toolbar (default: on)
 #
 # Options: -p <profile>  use a specific Firefox profile (name or path)
 #          -y            answer yes to every prompt
@@ -153,7 +153,7 @@ pref_needs_restart() { is_running "$1" && ! pref_set "$1/prefs.js" "$2"; }
 enable_pref() {
     local file="$1/user.js"
     [[ -f "$file" ]] && sed -i "/\"${2//./\\.}\"/d" "$file"
-    echo "user_pref(\"$2\", true); // added by webapps install.sh" >>"$file"
+    echo "user_pref(\"$2\", true); // added by webapps.sh" >>"$file"
     log INFO "enabled $2 in $file"
 }
 
@@ -656,7 +656,7 @@ $CSS_END
 EOF
         pref_enabled "$profile" "$STYLE_PREF" || enable_pref "$profile" "$STYLE_PREF"
     else
-        printf '%s\n/* turned off with: install.sh frameless off */\n%s\n' "$CSS_BEGIN" "$CSS_END" >>"$css"
+        printf '%s\n/* turned off with: webapps.sh frameless off */\n%s\n' "$CSS_BEGIN" "$CSS_END" >>"$css"
     fi
     log INFO "frameless $mode for $profile"
 }

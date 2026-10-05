@@ -3,7 +3,7 @@
 Turn any website into a desktop app on Linux with one command, using Firefox's built-in web apps feature ("Taskbar Tabs").
 
 ```bash
-./install.sh https://youtube.com
+./webapps.sh https://youtube.com
 ```
 
 The app gets its own window, icon and launcher in your app menu. It runs inside your normal Firefox profile, so you stay logged in and no extra Firefox is started.
@@ -17,14 +17,14 @@ The app gets its own window, icon and launcher in your app menu. It runs inside 
 ### Usage
 
 ```bash
-./install.sh https://youtube.com           # install
-./install.sh x.com -n "X"                  # https:// is optional; -n sets the name
-./install.sh -r youtube.com                # remove by URL…
-./install.sh -r YouTube                    # …or by name
-./install.sh list                          # list installed apps
-./install.sh check                         # check profiles, enable the feature
-./install.sh frameless off                 # app windows with a toolbar
-./install.sh frameless on                  # app windows without one (default)
+./webapps.sh https://youtube.com           # install
+./webapps.sh x.com -n "X"                  # https:// is optional; -n sets the name
+./webapps.sh -r youtube.com                # remove by URL…
+./webapps.sh -r YouTube                    # …or by name
+./webapps.sh list                          # list installed apps
+./webapps.sh check                         # check profiles, enable the feature
+./webapps.sh frameless off                 # app windows with a toolbar
+./webapps.sh frameless on                  # app windows without one (default)
 ```
 
 Options:
