@@ -1,4 +1,7 @@
 ### webapps
+<img width="420" height="211" alt="image" src="https://github.com/user-attachments/assets/091aba2a-25e2-43e3-bc12-1cdc9a491260" />
+
+<img width="1921" height="1154" alt="image" src="https://github.com/user-attachments/assets/86ba61c3-787a-4b1f-b6ab-e622df3a1e0f" />
 
 Turn any website into a desktop app on Linux with one command, using Firefox's built-in web apps feature ("Taskbar Tabs").
 
