@@ -15,7 +15,8 @@ The app gets its own window, icon and launcher in your app menu. It runs inside 
 
 - Linux with a freedesktop desktop (GNOME, KDE, …)
 - Firefox 157 or newer
-- `jq`, `unzip`, `python3`
+- `jq`, `unzip`
+- Optional: `python3` for the sharpest app icons. Without it, `curl` fetches a 256px icon from Google's favicon service instead.
 
 ### Usage
 

@@ -344,7 +344,7 @@ EOF
 # Downloads the sharpest icon a site offers (web app manifest, apple-touch-icon,
 # favicons, then Google's favicon service) as a PNG. Firefox only uses
 # favicons it already has cached, which are often missing or tiny.
-fetch_icon() {
+fetch_icon_full() {
     python3 - "$1" "$2" <<'PY'
 import html.parser, json, os, re, shutil, struct, subprocess, sys, tempfile, urllib.parse, urllib.request
 
@@ -446,6 +446,25 @@ if not best:
 open(out, "wb").write(best)
 print(f"{best_w}px from {best_src}")
 PY
+}
+
+# Without python3: just Google's favicon service, via curl
+fetch_icon_basic() {
+    local host src="" width
+    command -v curl >/dev/null || return 1
+    host="$(host_of "$1")"
+    src="https://www.google.com/s2/favicons?domain=$host&sz=256"
+    curl -fsSL --max-time 15 -o "$2" "$src" 2>/dev/null || return 1
+    [[ "$(head -c 8 "$2" | od -An -tx1 | tr -d ' \n')" == 89504e470d0a1a0a ]] || return 1
+    width="$(od -An -tu1 -j16 -N4 "$2" | awk '{ print $1 * 16777216 + $2 * 65536 + $3 * 256 + $4 }')"
+    echo "${width}px from $src"
+}
+
+fetch_icon() {
+    if command -v python3 >/dev/null; then
+        fetch_icon_full "$@" && return
+    fi
+    fetch_icon_basic "$@"
 }
 
 # Replaces the icon Firefox picked with a downloaded one, if that works
